@@ -297,15 +297,7 @@ Change the `spec.size` field in the memcached CR from 3 to 4 and apply the
 change:
 
 ```sh
-$ cat deploy/cr.yaml
-apiVersion: "cache.example.com/v1alpha1"
-kind: "Memcached"
-metadata:
-  name: "example-memcached"
-spec:
-  size: 4
-
-$ kubectl apply -f deploy/crds/cache_v1alpha1_memcached_cr.yaml
+$ kubectl patch Memcached example-memcached -p '{"spec":{"size":4} }' --type='merge'
 ```
 
 Confirm that the operator changes the deployment size:
